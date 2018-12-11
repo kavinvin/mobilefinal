@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_register.*
 import th.ac.kmitl.a59070009.mobilefinal.R
+import th.ac.kmitl.mobilefinal.utils.setFragment
 import th.ac.kmitl.mobilefinal.utils.toast
 import th.ac.kmitl.mobilefinal.utils.toaster
 
@@ -53,6 +54,7 @@ class RegisterFragment : Fragment() {
         )
         val result = database.create(user)
         Log.d("registration", "result: $result")
+        setFragment(LoginFragment())
 
         return
     }

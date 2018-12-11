@@ -7,7 +7,7 @@ class Toaster(private val context: Context?) {
 
     val requireAllFieldsToast = createToast("Please specify all fields")
     val loginSuccessToast = createToast("Login success")
-    val loginFailedToast = createToast("Login failed")
+    val loginFailedToast = createToast("Invalid user id or password")
     val verifyEmailToast = createToast("Please verify your email")
     val userIdError = createToast("User ID length must be between 6-12")
     val nameError = createToast("You must provide both firstname and lastname")

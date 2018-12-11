@@ -1,5 +1,6 @@
 package th.ac.kmitl.a59070009.mobilefinal.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -40,12 +41,17 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(id: String, password: String) {
+        val preference = context!!.getSharedPreferences("mobile", Context.MODE_PRIVATE)
+
         val result = database.login(id, password)
 
         if (result == null) {
             toaster().loginFailedToast.show()
         } else {
             toaster().loginSuccessToast.show()
+            preference.edit().putString("id", result.id).commit()
+            preference.edit().putString("name", result.name).commit()
+            setFragment(HomeFragment())
         }
     }
 
