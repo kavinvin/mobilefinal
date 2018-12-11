@@ -30,6 +30,10 @@ class HomeFragment : Fragment() {
             setFragment(LoginFragment())
         }
 
+        home_friend.setOnClickListener {
+            setFragment(FriendFragment())
+        }
+
     }
 
 }

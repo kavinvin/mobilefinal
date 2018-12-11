@@ -30,7 +30,7 @@
             app:layout_constraintTop_toBottomOf="@+id/friend_back_button">
 
         <ListView
-                android:id="@+id/post_list"
+                android:id="@+id/friend_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></ListView>
     </LinearLayout>

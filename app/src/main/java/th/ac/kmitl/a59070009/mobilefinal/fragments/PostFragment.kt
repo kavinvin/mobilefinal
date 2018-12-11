@@ -46,9 +46,9 @@ class PostFragment : Fragment() {
         posts.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>?, response: Response<List<Post>>) {
                 val postsList = response.body() ?: emptyList()
-                post_list.adapter = PostAdapter(context!!, postsList)
-                post_list.setOnItemClickListener { adapterView, view, i, l ->
-                    setFragment(CommentFragment().apply { postId = postsList[i].id })
+                friend_list.adapter = PostAdapter(context!!, postsList)
+                friend_list.setOnItemClickListener { adapterView, view, i, l ->
+//                    setFragment(CommentFragment().apply { postId = postsList[i].id })
                 }
             }
             override fun onFailure(call: Call<List<Post>>?, t: Throwable?) {
@@ -70,7 +70,7 @@ class PostAdapter(private val ctx: Context, private val data: List<Post>) : Base
         val rowView = inflater.inflate(R.layout.fragment_post_item, p2, false)
         rowView.apply {
             val post = data[p0]
-            post_title.text = "${post.id} : ${post.title}"
+            friend_title.text = "${post.id} : ${post.title}"
             post_body.text = post.body
         }
         return rowView
