@@ -2,6 +2,7 @@ package th.ac.kmitl.a59070009.mobilefinal.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,19 +14,23 @@ import th.ac.kmitl.mobilefinal.utils.toaster
 
 class LoginFragment : Fragment() {
 
+    lateinit var database: Database
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        database = Database(context!!)
+
         login_login_button.setOnClickListener {
-            val email = login_email.text.toString()
+            val id = login_email.text.toString()
             val password = login_password.text.toString()
 
             when {
-                listOf(email, password).any { it.isEmpty() } -> toast("All fields are required")
-                else -> login(email, password)
+                listOf(id, password).any { it.isEmpty() } -> toast("All fields are required")
+                else -> login(id, password)
             }
         }
 
@@ -34,8 +39,14 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun login(email: String, password: String) {
-        return
+    private fun login(id: String, password: String) {
+        val result = database.login(id, password)
+
+        if (result == null) {
+            toaster().loginFailedToast.show()
+        } else {
+            toaster().loginSuccessToast.show()
+        }
     }
 
 }
